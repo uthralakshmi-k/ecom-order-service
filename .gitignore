@@ -1,0 +1,32 @@
+# Build folders
+/target/
+/build/
+
+# IDE files
+/.idea/
+/*.iml
+/.classpath
+/.project
+/.settings/
+/.vscode/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Maven / Gradle wrapper files
+/mvnw
+/mvnw.cmd
+/gradlew
+/gradlew.bat
+
+# JAR/WAR
+*.jar
+*.war
+
+# Application configuration secrets
+application*.yml
+application*.properties
