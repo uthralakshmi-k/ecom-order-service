@@ -237,32 +237,5 @@ class OrderControllerIntegrationTest {
 
     }
 
-//    @Test
-//    void createOrder_withValidApiKey_shouldReturnCreatedOrder2() throws Exception {
-//        OrderRequestDTO request = new OrderRequestDTO(
-//                testCustomer.getId(),
-//                List.of(
-//                        new OrderItemDTO(product1.getId(), 1),
-//                        new OrderItemDTO(product2.getId(), 2)
-//                )
-//        );
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//        headers.set("API-KEY", apiKey);
-//
-//        HttpEntity<OrderRequestDTO> entity = new HttpEntity<>(request, headers);
-//
-//        ResponseEntity<String> response = restTemplate.exchange(
-//                "http://localhost:" + port + "/orders/create",
-//                HttpMethod.POST,
-//                entity,
-//                String.class
-//        );
-//        log.info("Response body: {}", response.getBody());
-//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//
-//    }
-
 
 }

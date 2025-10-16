@@ -20,8 +20,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-//@EntityScan(basePackages = "com.practise.ops.db.model")
-//@EnableJpaRepositories(basePackages = "com.practise.ops.repository")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 
 class OrderRepositoryTest {

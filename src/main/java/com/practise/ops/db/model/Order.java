@@ -1,5 +1,6 @@
 package com.practise.ops.db.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.practise.ops.constants.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -32,6 +33,7 @@ public class Order {
     private OrderStatus status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<OrderItem> items = new ArrayList<>();
 }
 

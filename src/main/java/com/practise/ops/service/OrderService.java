@@ -55,6 +55,7 @@ public class OrderService {
                 throw new RuntimeException("Insufficient stock for " + product.getName());
 
             product.setStockQuantity(product.getStockQuantity() - dto.getQuantity());
+            product.setUpdatedDate(LocalDateTime.now());
             productRepository.save(product);
 
             OrderItem item = new OrderItem();
