@@ -29,4 +29,3 @@ Thumbs.db
 
 # Application configuration secrets
 application*.yml
-application*.properties
