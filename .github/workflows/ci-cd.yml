@@ -1,0 +1,55 @@
+name: CI/CD Pipeline
+
+# Trigger on push to dev/test/main or manual dispatch
+on:
+  push:
+    branches:
+      - dev
+      - test
+      - main
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: 'Spring profile to use (ci, dev, prod)'
+        required: true
+        default: 'ci'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      # Default profile is CI unless overridden
+      SPRING_PROFILE: ${{ github.event.inputs.profile || 'ci' }}
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Java 21
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      # Step 3: Cache Maven dependencies
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # Step 4: Build and run tests with the specified Spring profile
+      - name: Build and run tests
+        run: mvn clean package -B -Dspring-boot.run.profiles=$SPRING_PROFILE
+
+      # Step 5: Archive JAR for CD deployment
+      - name: Archive artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ecom-order-service
+          path: target/*.jar
