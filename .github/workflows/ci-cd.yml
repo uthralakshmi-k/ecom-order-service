@@ -10,9 +10,9 @@ on:
   workflow_dispatch:
     inputs:
       profile:
-        description: 'Spring profile to use (ci, dev, prod)'
+        description: 'Spring profile to use (test, dev, prod)'
         required: true
-        default: 'ci'
+        default: 'test'
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
 
     env:
       # Default profile is CI unless overridden
-      SPRING_PROFILE: ${{ github.event.inputs.profile || 'ci' }}
+      SPRING_PROFILE: ${{ github.event.inputs.profile || 'test' }}
 
     steps:
       # Step 1: Checkout code
