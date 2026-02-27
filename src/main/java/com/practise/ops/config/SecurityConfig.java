@@ -12,23 +12,9 @@ public class SecurityConfig {
 
     private final ApiKeyFilter apiKeyFilter;
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .csrf(csrf -> csrf.disable())
-//                .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/orders/**").authenticated()  // secure these endpoints
-//                        .anyRequest().permitAll()
-//                )
-//                .addFilterBefore(apiKeyFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)
-//                .httpBasic(httpBasic -> httpBasic.disable())
-//                .formLogin(form -> form.disable());
-//
-//        return http.build();
-//    }
 
     @Bean
-    public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable()) // disable CSRF for API
                 .authorizeHttpRequests(auth -> auth

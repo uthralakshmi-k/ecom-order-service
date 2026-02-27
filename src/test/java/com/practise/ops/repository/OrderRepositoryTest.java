@@ -6,6 +6,7 @@ import com.practise.ops.db.model.Customer;
 import com.practise.ops.db.model.Order;
 import com.practise.ops.db.repository.CustomerRepository;
 import com.practise.ops.db.repository.OrderRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@Disabled
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 

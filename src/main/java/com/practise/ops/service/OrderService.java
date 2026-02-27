@@ -14,6 +14,8 @@ import com.practise.ops.db.repository.OrderRepository;
 import com.practise.ops.db.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,8 +77,9 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-
+    @Cacheable(value = "orders", key = "#orderId")
     public Order getOrder(Long orderId) {
+        System.out.println("Fetching from DB...");
         return orderRepository.findById(orderId)
                 .orElseThrow(() -> new OrderNotFoundException(orderId));
     }
@@ -89,6 +92,7 @@ public class OrderService {
     }
 
     @Transactional
+    @CacheEvict(value = "order", key = "#orderId")
     public Order cancelOrder(Long orderId) {
         Order order = getOrder(orderId);
         if (order.getStatus() != OrderStatus.PENDING) {
