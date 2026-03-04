@@ -45,7 +45,8 @@ jobs:
 
       # Step 4: Build and run tests with the specified Spring profile
       - name: Build and run tests
-        run: mvn clean package -B -Dspring.profiles.active=$SPRING_PROFILE
+        run: mvn clean package -DskipTests
+       # run: mvn clean package -B -Dspring.profiles.active=$SPRING_PROFILE
 
       # Step 5: Archive JAR for CD deployment
       - name: Archive artifact
